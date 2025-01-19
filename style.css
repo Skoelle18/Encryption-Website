@@ -1,0 +1,266 @@
+/* General Reset */
+* {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+ }
+ 
+ html, body {
+     width: 100%;
+     height: 100%;
+     overflow: hidden;
+     font-family: Arial, sans-serif;
+ }
+ .scroll-container {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden; /* Allows content to scroll */
+    cursor: grab; /* Change cursor to indicate dragging */
+  }
+ 
+ /* Header Section */
+ .header {
+     min-height: 100vh; /* Makes the background cover the entire viewport */
+     width: 100%;
+     background: linear-gradient(45deg, darkblue, lightblue);
+     background-position: center;
+     background-size: cover;
+     position: relative;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     padding: 20px;
+ }
+ 
+ /* Intro Box Styling */
+ .intro {
+     width: 95%; /* Center box width */
+     max-width: 1000px;
+     padding: 80px;
+     background-color: #e1bf92;
+     opacity: 0.9;
+     border-radius: 30px;
+     text-align: center;
+     color: rgb(0, 0, 0); /* Ensures text is visible */
+     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+ }
+ 
+ .intro h1 {
+     font-size: 40px;
+     font-weight: 600;
+     line-height: 1.5;
+     color: rgb(0, 0, 0);
+ }
+ 
+ .row {
+     margin-top: 20px;
+     display: flex;
+     justify-content: space-around;
+     gap: 10px;
+ }
+ 
+ button {
+     background-color: #f6d7b0;
+     opacity: 1;
+     border-radius: 20px;
+     padding: 25px 40px;
+     box-sizing: border-box;
+     cursor: pointer;
+     font-size: 25px;
+     font-weight: 600;
+     scroll-behavior: smooth;
+     transition: 0.3s;
+     border: none;
+ }
+ 
+ button:hover {
+     box-shadow: 0 0 20px 0px #49371f;
+ }
+ 
+ /* Caesar Cipher Section */
+ .cc, .XOR, .rsa {
+     width: 98%;
+     max-width: 1200px;
+     margin: 0 auto;
+     padding: 80px;
+     background-color: #e1bf92;
+     opacity: 0.9;
+     border-radius: 20px;
+     text-align: center;
+     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+     margin-top: 50px;
+ }
+ 
+ .cc h1, .XOR h1, .rsa h1 {
+     font-size: 50px;
+     font-weight: 600;
+     color: rgb(0, 0, 0);
+     margin-bottom: 10px;
+ }
+ 
+ .cc h3, .XOR h3, .rsa h3 {
+     font-size: 40px;
+     font-weight: 500;
+     color: rgb(30, 29, 29);
+     margin-bottom: 20px;
+ }
+ 
+ .row1, .row2, .row3 {
+     display: flex;
+     justify-content: space-between;
+     flex-wrap: wrap;
+     gap: 20px;
+ }
+ 
+ .btn {
+     background-color: #f6d7b0;
+     padding: 25px 40px;
+     border: none;
+     cursor: pointer;
+     border-radius: 20px;
+     font-size: 25px;
+     font-weight: 600;
+     scroll-behavior: smooth;
+     transition: 0.3s;
+ }
+ 
+ .btn:hover {
+     box-shadow: 0 0 20px 0px #49371f;
+ }
+ .mainn{
+    background-color: #c09054;
+     padding: 10px 10px;
+     border: none;
+     cursor: pointer;
+     border-radius: 10px;
+     font-size: 18px;
+     font-weight: 600;
+     scroll-behavior: smooth;
+     transition: 0.3s;
+     align-self: start;
+ }
+ /* XOR Section Buttons */
+
+ .XOR label {
+     display: block;
+     font-size: 20px;
+     font-weight: bold;
+ }
+ 
+ .XOR input[type="text"] {
+     padding: 10px;
+     font-size: 16px;
+     border: 1px solid #ccc;
+     border-radius: 4px;
+     width: 300px;
+ }
+ 
+ 
+ 
+ /* Popup Styling */
+ /* Popup Container */
+.popup {
+     width: 400px;
+     max-width: 90%;
+     background: #bba181;
+     position: fixed;
+     top: 25%;
+     left: 50%;
+     transform: translate(-50%, -50%) scale(0);
+     visibility: hidden;
+     transition: transform 0.4s ease, visibility 0.4s ease;
+     border-radius: 10px;
+     padding: 20px;
+     text-align: center;
+     z-index: 1000;
+     color: #1b1a1a;
+     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+ }
+ 
+ .popup.open-popup {
+     transform: translate(-50%, -50%) scale(1);
+     visibility: visible;
+ }
+ .popup.open-popup {
+    display: block;
+}
+ 
+ /* Popup Heading */
+ .popup h2 {
+     font-size: 24px;
+     font-weight: 600;
+     margin-bottom: 20px;
+     color: #121212;
+ }
+ 
+ /* File Input and Label */
+ .popup input[type="file"] {
+     margin-top: 20px;
+     padding: 10px;
+     font-size: 16px;
+     border: 1px solid #ccc;
+     border-radius: 4px;
+     width: 100%;
+ }
+ 
+ .popup label {
+     display: block;
+     font-size: 16px;
+     font-weight: bold;
+     margin-top: 20px;
+     color: rgb(13, 13, 12);
+ }
+ 
+ /* Text Input */
+ .popup input[type="text"] {
+     margin-top: 10px;
+     padding: 10px;
+     font-size: 16px;
+     border: 1px solid #181818;
+     border-radius: 4px;
+     width: 80%;
+ }
+ 
+ /* Button Styling */
+ .popup button {
+     margin-top: 20px;
+     padding: 10px 15px;
+     background-color: #f6d7b0;
+     font-size: 14px;
+     border-radius: 10px;
+     cursor: pointer;
+     border: none;
+     font-weight: bold;
+     transition: 0.3s;
+     width: 50%;
+ }
+ 
+ .popup button:hover {
+     box-shadow: 0 0 20px 0px #49371f;
+ }
+ 
+ 
+ 
+ 
+ 
+ /* Responsiveness */
+ @media (max-width: 768px) {
+     .row, .row1, .row2, .row3 {
+         flex-direction: column;
+         align-items: center;
+         gap: 15px;
+     }
+ 
+     button, .btn {
+         width: 80%;
+     }
+ 
+     .intro h1, .cc h1, .XOR h1, .rsa h1 {
+         font-size: 28px;
+     }
+ 
+     .popup {
+         width: 90%;
+     }
+ }
+ 

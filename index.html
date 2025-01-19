@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <title>Encrypt Decrypt</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body class ="scroll-container" id="scroll-container">
+        <section id="main">
+            <div class="header">
+                <div class="intro">
+                    <h1>HEY!!<br>Choose the type of encryption or decryption</h1>
+                    <div class="row">
+                        <div class="d">
+                            <button class="caesar" onclick="slowScrollTo('tcc');">Caesar Cipher</button>
+                        </div>
+                        <div class="d">
+                            <button class="caesar" onclick="slowScrollTo('txor');">XOR Encryption</button>
+                        </div>
+                        <div class="d">
+                            <button class="caesar" onclick="slowScrollTo('trsa');">RSA Encryption</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!---------cc------------->
+        <section id="tcc">
+            <div class="header">
+                <button class="mainn" onclick="slowScrollTo('main');">back</button>
+                <div class="cc">
+                    <h1>Caesar Cipher</h1>
+                    <h3>Choose encrypt or decrypt</h3>
+                    <div class="row1">
+                        <div class="d1">
+                            <button class="btn" onclick="openpopup('popupCaesar')">Encryption</button>
+                        </div>
+                        <div class="d1">
+                            <button class="btn" onclick="openpopup('popupCaesar')">Decryption</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="popup" id="popupCaesar">
+                    <h2>Click on the button to choose file</h2>
+                    
+                    <p id="fileName" style="margin-top:20px;margin-left: 40px; font-size:18px;color:rgb(134, 106, 37);"></p>
+                
+                    <input type="file" id="fileInput"/>
+                    <button onclick="closepopup('popupCaesar')">Close</button>
+                </div>
+            </div>
+        </section>
+
+        <!-----xor------>
+        <section>
+            <div id="txor" class="header">
+                <button class="mainn" onclick="slowScrollTo('main');">back</button>
+                <div class="XOR">
+                    <h1>XOR Encryption</h1>
+                    <h3>Choose encrypt or decrypt and type the key</h3>
+                    <div class="row2">
+                        <div class="d2">
+                            <button class="btn" onclick="openpopup('popupXOREncrypt')">Encryption</button>
+                        </div>
+                        <div class="d1">
+                            <button class="btn" onclick="openpopup('popupXORDecrypt')">Decryption</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="popup" id="popupXOREncrypt">
+                    <h2>XOR Encryption - Upload File and enter the key</h2>
+                    
+                    <p id="fileName" style="margin-top:20px;margin-left: 40px; font-size:18px;color:rgb(134, 106, 37);"></p>
+                
+                    <input type="file" id="fileInput"/>
+
+                    <label for="userInput">Enter your key:</label>
+                    <input type="text" id="userInput" placeholder="Type key here..." />
+                    <button onclick="saveText()">Save key</button>
+                    <button onclick="closepopup('popupXOREncrypt')">Close</button>
+                </div>
+                <div class="popup" id="popupXORDecrypt">
+                    <h2>XOR Decryption - Upload File and enter the key</h2>
+                    
+                    <p id="fileName" style="margin-top:20px;margin-left: 40px; font-size:18px;color:rgb(134, 106, 37);"></p>
+                
+                    <input type="file" id="fileInput"/><br>
+                    <label for="userInput"><br>Enter the key:</label>
+                    <input type="text" id="userInput" placeholder="Type key here..." />
+                    <button onclick="saveText()">Save Key</button>
+                    <button onclick="closepopup('popupXORDecrypt')">Close</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- RSA Section -->
+        <section>
+            <div class="header">
+                <button class="mainn" onclick="slowScrollTo('main');">back</button>
+                <div id="trsa" class="rsa">
+                    <h1>RSA Encryption</h1>
+                    <h3>Choose encrypt or decrypt and type the key</h3>
+                    <div class="row3">
+                        <div class="d3">
+                            <button class="btn" onclick="openpopup('popupRSAEncrypt')">Encryption</button>
+                        </div>
+                        <div class="d3">
+                            <button class="btn" onclick="openpopup('popupRSADecrypt')">Decryption</button>
+                        </div>
+                        <div class="d3">
+                            <button class="btn">Key Generation</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="popup" id="popupRSAEncrypt">
+                    <h2>RSA Encryption - Upload File</h2>
+                    <p id="fileName" style="margin-top:20px;margin-left: 40px; font-size:18px;color:rgb(134, 106, 37);"></p>
+                
+                    <input type="file" id="fileInput"/>
+                    <button onclick="closepopup('popupRSAEncrypt')">Close</button>
+                </div>
+                <div class="popup" id="popupRSADecrypt">
+                    <h2>RSA Decryption - Upload File</h2>
+                    <p id="fileName" style="margin-top:20px;margin-left: 40px; font-size:18px;color:rgb(134, 106, 37);"></p>
+                
+                    <input type="file" id="fileInput"/>
+                    <button onclick="closepopup('popupRSADecrypt')">Close</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- JavaScript -->
+        <script>
+            // Smooth scrolling function
+            function slowScrollTo(targetId) {
+                const target = document.getElementById(targetId);
+                if (target) {
+                    target.scrollIntoView({ behavior: "smooth" });
+                } else {
+                    console.error(`Element with ID '${targetId}' not found.`);
+                }
+            }
+
+            function openFileExplorer(){
+                const fileInput=document.getElementById('fileInput');
+                fileInput.click();
+            }
+
+            function saveText() {
+        const inputText = document.getElementById('userInput').value; // Get the text box value
+        console.log("Stored text:", inputText); // Log it to the console (temporary)
+        alert(`You entered: ${inputText}`);
+    }
+    
+    
+    const container = document.getElementById('scroll-container');
+
+let isDragging = false; // To track if the mouse is pressed
+let startX, startY, scrollLeft, scrollTop;
+
+// Mouse down event
+container.addEventListener('mousedown', (e) => {
+  isDragging = true;
+  container.classList.add('active');
+  startX = e.pageX - container.offsetLeft;
+  startY = e.pageY - container.offsetTop;
+  scrollLeft = container.scrollLeft;
+  scrollTop = container.scrollTop;
+  container.style.cursor = 'grabbing'; // Change cursor during dragging
+});
+
+// Mouse move event
+container.addEventListener('mousemove', (e) => {
+  if (!isDragging) return;
+  e.preventDefault();
+  const x = e.pageX - container.offsetLeft;
+  const y = e.pageY - container.offsetTop;
+  const walkX = (x - startX) * 2; // Adjust scroll speed (multiplier)
+  const walkY = (y - startY) * 2; // Adjust scroll speed (multiplier)
+  container.scrollLeft = scrollLeft - walkX;
+  container.scrollTop = scrollTop - walkY;
+});
+
+// Mouse up event
+container.addEventListener('mouseup', () => {
+  isDragging = false;
+  container.style.cursor = 'grab'; // Reset cursor after dragging
+});
+
+// Mouse leave event
+container.addEventListener('mouseleave', () => {
+  isDragging = false;
+  container.style.cursor = 'grab'; // Reset cursor if mouse leaves the area
+});
+
+
+// Popup open/close logic
+// Open popup function
+function openpopup(popupId) {
+    const popup = document.getElementById(popupId);
+    if (popup) {
+        popup.classList.add("open-popup");
+        isPopupOpen = true;
+        toggleScrollContainer(false); // Disable scroll-container interactions
+    } else {
+        console.error(`Popup with ID '${popupId}' not found.`);
+    }
+}
+
+// Close popup function
+function closepopup(popupId) {
+    const popup = document.getElementById(popupId);
+    if (popup) {
+        popup.classList.remove("open-popup");
+        isPopupOpen = false;
+        toggleScrollContainer(true); // Enable scroll-container interactions
+    } else {
+        console.error(`Popup with ID '${popupId}' not found.`);
+    }
+}
+
+
+// Example usage: Attach open/close functions to popup buttons
+document.getElementById(popupId).addEventListener('click', openPopup);
+document.getElementById(popupId).addEventListener('click', closePopup);
+        </script>
+    </body>
+</html>
