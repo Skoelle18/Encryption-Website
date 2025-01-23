@@ -10,17 +10,19 @@
     <!-- Main Section -->
     <section id="main">
         <div class="header">
-            <div class="intro">
-                <h1>HEY!!<br>Choose the type of encryption or decryption</h1>
-                <div class="row">
-                    <div class="d">
-                        <button class="caesar" onclick="slowScrollTo('tcc');">Caesar Cipher</button>
-                    </div>
-                    <div class="d">
-                        <button class="caesar" onclick="slowScrollTo('txor');">XOR Encryption</button>
-                    </div>
-                    <div class="d">
-                        <button class="caesar" onclick="slowScrollTo('trsa');">RSA Encryption</button>
+            <div class="contain">
+                <div class="intro">
+                    <h1>HEY!!<br>Choose the type of encryption or decryption</h1>
+                    <div class="row">
+                        <div class="d">
+                            <button class="caesar" onclick="slowScrollTo('tcc');">Caesar Cipher</button>
+                        </div>
+                        <div class="d">
+                            <button class="caesar" onclick="slowScrollTo('txor');">XOR Encryption</button>
+                        </div>
+                        <div class="d">
+                            <button class="caesar" onclick="slowScrollTo('trsa');">RSA Encryption</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -30,16 +32,19 @@
     <!-- Caesar Cipher Section -->
     <section id="tcc">
         <div class="header">
-            <button class="mainn" onclick="slowScrollTo('main');">back</button>
-            <div class="cc">
-                <h1>Caesar Cipher</h1>
-                <h3>Choose encrypt or decrypt</h3>
-                <div class="row1">
-                    <div class="d1">
-                        <button class="btn" onclick="openCaesarPopup('encrypt')">Encryption</button>
-                    </div>
-                    <div class="d1">
-                        <button class="btn" onclick="openCaesarPopup('decrypt')">Decryption</button>
+            
+            <div class="contain">
+                <button class="mainn" onclick="slowScrollTo('main');">back</button>
+                <div class="cc">
+                    <h1>Caesar Cipher</h1>
+                    <h3>Choose encrypt or decrypt</h3>
+                    <div class="row1">
+                        <div class="d1">
+                            <button class="btn" onclick="openCaesarPopup('encrypt')">Encryption</button>
+                        </div>
+                        <div class="d1">
+                            <button class="btn" onclick="openCaesarPopup('decrypt')">Decryption</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -47,37 +52,48 @@
     </section>
 
     <!-- XOR Encryption Section -->
-    <section id="txor">
-        <button class="mainn" onclick="slowScrollTo('main');">Back</button>
-        <div class="XOR">
-            <h1>XOR Encryption</h1>
-            <h3>Choose encrypt or decrypt and type the key</h3>
-            <div class="row2">
-                <div class="d2">
-                    <button class="btn" onclick="openXORPopup('encrypt')">Encryption</button>
-                </div>
-                <div class="d1">
-                    <button class="btn" onclick="openXORPopup('decrypt')">Decryption</button>
+    <section >
+        <div id="txor" class="header">
+            
+            <div class="contain">
+                <button class="mainn" onclick="slowScrollTo('main');">Back</button>
+                <div class="XOR">
+                    <h1>XOR Encryption</h1>
+                    <h3>Choose encrypt or decrypt and type the key</h3>
+                    <div class="row2">
+                        <div class="d2">
+                            <button class="btn" onclick="openXORPopup('encrypt')">Encryption</button>
+                        </div>
+                        <div class="d1">
+                            <button class="btn" onclick="openXORPopup('decrypt')">Decryption</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- RSA Encryption Section -->
-    <section id="trsa">
-        <button class="mainn" onclick="slowScrollTo('main');">Back</button>
-        <div class="rsa">
-            <h1>RSA Encryption</h1>
-            <h3>Choose encrypt or decrypt and type the key</h3>
-            <div class="row3">
-                <div class="d3">
-                    <button class="btn" onclick="openRSAPopup('encrypt')">Encryption</button>
-                </div>
-                <div class="d3">
-                    <button class="btn" onclick="openRSAPopup('decrypt')">Decryption</button>
-                </div>
-                <div class="d3">
-                    <button class="btn" onclick="generateRSAKeys()">Generate RSA Keys</button>
+    <section >
+        <div class="header">
+            
+            <div class="contain">
+                <button class="mainn" onclick="slowScrollTo('main');">Back</button>
+                <div id="trsa" class="rsa">
+                    
+                    <h1>RSA Encryption</h1>
+                    <h3>Choose encrypt or decrypt and type the key</h3>
+                    <div class="row3">
+                        <div class="d3">
+                            <button class="btn" onclick="openRSAPopup('encrypt')">Encryption</button>
+                        </div>
+                        <div class="d3">
+                            <button class="btn" onclick="openRSAPopup('decrypt')">Decryption</button>
+                        </div>
+                        <div class="d3">
+                            <button class="btn" onclick="openPopup('keygeneration')">Generate RSA Keys</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -155,6 +171,13 @@
             <button type="button" onclick="closepopup('popupRSADecrypt')">Close</button>
         </form>
     </div>
+    
+    <!-- Popup Modal for RSA Key -->
+    <div class="popup" id="keygeneration">
+        <h2>Generated Keys</h2>
+        <button type="button" onclick="generateRSAKeys()">Generate</button>
+        <button onclick="closepopup('keygeneration')">Close</button>
+    </div>
 
     <script>
         function slowScrollTo(targetId) {
@@ -186,6 +209,14 @@
             const popup = document.getElementById(mode === 'encrypt' ? 'popupRSAEncrypt' : 'popupRSADecrypt');
             const overlay = document.getElementById('overlay');
             if (popup) {
+                popup.classList.add('open-popup');
+                overlay.classList.add('show-overlay');
+            }
+        }
+        function openPopup(popupId) {
+            const popup = document.getElementById(popupId);
+            const overlay= document.getElementById('overlay')
+            if (popup){
                 popup.classList.add('open-popup');
                 overlay.classList.add('show-overlay');
             }
@@ -337,14 +368,59 @@
             })
             .catch(error => console.error('Error:', error));
         }
+
         function generateRSAKeys() {
             fetch('/generate/rsa-keys')
                 .then(response => response.json())
                 .then(data => {
-                    alert("Public Key: \n" + data.publicKey + "\n\nPrivate Key: \n" + data.privateKey);
+                    //alert("Public Key: \n" + data.publicKey + "\n\nPrivate Key: \n" + data.privateKey);
+                    const modulus = "Public Key:" + data.publicKey + "\n" + "Private Key:" + data.privateKey;
+                    navigator.clipboard.writeText(`${modulus}`);
                 })
                 .catch(error => console.error('Error generating RSA keys:', error));
         }
+
+        //drag mouse
+        const container = document.getElementById('scroll-container');
+
+        let isDragging = false; // To track if the mouse is pressed
+        let startX, startY, scrollLeft, scrollTop;
+
+        // Mouse down event
+        container.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        container.classList.add('active');
+        startX = e.pageX - container.offsetLeft;
+        startY = e.pageY - container.offsetTop;
+        scrollLeft = container.scrollLeft;
+        scrollTop = container.scrollTop;
+        container.style.cursor = 'grabbing'; // Change cursor during dragging
+        });
+
+        // Mouse move event
+        container.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        e.preventDefault();
+        const x = e.pageX - container.offsetLeft;
+        const y = e.pageY - container.offsetTop;
+        const walkX = (x - startX) * 2; // Adjust scroll speed (multiplier)
+        const walkY = (y - startY) * 2; // Adjust scroll speed (multiplier)
+        container.scrollLeft = scrollLeft - walkX;
+        container.scrollTop = scrollTop - walkY;
+        });
+
+        // Mouse up event
+        container.addEventListener('mouseup', () => {
+        isDragging = false;
+        container.style.cursor = 'grab'; // Reset cursor after dragging
+        });
+
+        // Mouse leave event
+        container.addEventListener('mouseleave', () => {
+        isDragging = false;
+        container.style.cursor = 'grab'; // Reset cursor if mouse leaves the area
+        });
+
     </script>
 </body>
 </html>
