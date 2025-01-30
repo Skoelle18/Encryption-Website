@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encrypt Decrypt</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="scroll-container" id="scroll-container">
+
+    <!-- Main Section -->
+    <section id="main">
+        <div class="header">
+            <div class="contain">
+                <div class="intro">
+                    <h1>HEY!!<br>Choose the type of encryption or decryption</h1>
+                    <div class="row">
+                        <div class="d">
+                            <button class="caesar" onclick="slowScrollTo('tcc');">Caesar Cipher</button>
+                        </div>
+                        <div class="d">
+                            <button class="caesar" onclick="slowScrollTo('txor');">XOR Encryption</button>
+                        </div>
+                        <div class="d">
+                            <button class="caesar" onclick="slowScrollTo('trsa');">RSA Encryption</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Caesar Cipher Section -->
+    <section id="tcc">
+        <div class="header">
+            
+            <div class="contain">
+                <button class="mainn" onclick="slowScrollTo('main');">back</button>
+                <div class="cc">
+                    <h1>Caesar Cipher</h1>
+                    <h3>Choose encrypt or decrypt</h3>
+                    <div class="row1">
+                        <div class="d1">
+                            <button class="btn" onclick="openCaesarPopup('encrypt')">Encryption</button>
+                        </div>
+                        <div class="d1">
+                            <button class="btn" onclick="openCaesarPopup('decrypt')">Decryption</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- XOR Encryption Section -->
+    <section >
+        <div id="txor" class="header">
+            
+            <div class="contain">
+                <button class="mainn" onclick="slowScrollTo('main');">Back</button>
+                <div class="XOR">
+                    <h1>XOR Encryption</h1>
+                    <h3>Choose encrypt or decrypt and type the key</h3>
+                    <div class="row2">
+                        <div class="d2">
+                            <button class="btn" onclick="openXORPopup('encrypt')">Encryption</button>
+                        </div>
+                        <div class="d1">
+                            <button class="btn" onclick="openXORPopup('decrypt')">Decryption</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RSA Encryption Section -->
+    <section >
+        <div class="header">
+            
+            <div class="contain">
+                <button class="mainn" onclick="slowScrollTo('main');">Back</button>
+                <div id="trsa" class="rsa">
+                    
+                    <h1>RSA Encryption</h1>
+                    <h3>Choose encrypt or decrypt and type the key</h3>
+                    <div class="row3">
+                        <div class="d3">
+                            <button class="btn" onclick="openRSAPopup('encrypt')">Encryption</button>
+                        </div>
+                        <div class="d3">
+                            <button class="btn" onclick="openRSAPopup('decrypt')">Decryption</button>
+                        </div>
+                        <div class="d3">
+                            <button class="btn" onclick="openPopup('keygeneration')">Generate RSA Keys</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Overlay (for popups) -->
+    <div id="overlay"></div>
+
+    <!-- Popup Modal for Caesar Encrypt -->
+    <div class="popup" id="popupCaesarEncrypt">
+        <h2>Caesar Encryption - Upload File</h2>
+        <form id="caesarEncryptForm">
+            <input type="file" id="fileInputEncryptCaesar" name="file" required />
+            <button type="button" onclick="caesarEncrypt()">Encrypt</button>
+            <button type="button" onclick="closepopup('popupCaesarEncrypt')">Close</button>
+        </form>
+    </div>
+
+    <!-- Popup Modal for Caesar Decrypt -->
+    <div class="popup" id="popupCaesarDecrypt">
+        <h2>Caesar Decryption - Upload File</h2>
+        <form id="caesarDecryptForm">
+            <input type="file" id="fileInputDecryptCaesar" name="file" required />
+            <button type="button" onclick="caesarDecrypt()">Decrypt</button>
+            <button type="button" onclick="closepopup('popupCaesarDecrypt')">Close</button>
+        </form>
+    </div>
+
+    <!-- Popup Modal for XOR Encrypt -->
+    <div class="popup" id="popupXOREncrypt">
+        <h2>XOR Encryption - Upload File and Enter Key</h2>
+        <form id="xorEncryptForm">
+            <input type="file" id="fileInputEncryptXOR" name="file" required />
+            <label for="xorKeyInput">Enter XOR Key:</label>
+            <input type="text" id="xorKeyInputEncrypt" name="key" placeholder="Type key here..." required>
+            <button type="button" onclick="xorEncrypt()">Encrypt</button>
+            <button type="button" onclick="closepopup('popupXOREncrypt')">Close</button>
+        </form>
+    </div>
+
+    <!-- Popup Modal for XOR Decrypt -->
+    <div class="popup" id="popupXORDecrypt">
+        <h2>XOR Decryption - Upload File and Enter Key</h2>
+        <form id="xorDecryptForm">
+            <input type="file" id="fileInputDecryptXOR" name="file" required />
+            <label for="xorKeyInput">Enter XOR Key:</label>
+            <input type="text" id="xorKeyInputDecrypt" name="key" placeholder="Type key here..." required>
+            <button type="button" onclick="xorDecrypt()">Decrypt</button>
+            <button type="button" onclick="closepopup('popupXORDecrypt')">Close</button>
+        </form>
+    </div>
+
+    <!-- Popup Modal for RSA Encrypt -->
+    <div class="popup" id="popupRSAEncrypt">
+        <h2>RSA Encryption - Upload File and Enter Public Key</h2>
+        <form id="rsaEncryptForm">
+            <input type="file" id="fileInputEncryptRSA" name="file" required />
+            <label for="rsaPublicKeyInput">Enter RSA Public Key:</label>
+            <textarea id="rsaPublicKeyInput" name="publicKey" placeholder="Enter public key here..." required></textarea>
+            <button type="button" onclick="rsaEncrypt()">Encrypt</button>
+            <button type="button" onclick="closepopup('popupRSAEncrypt')">Close</button>
+        </form>
+    </div>
+
+    <!-- Popup Modal for RSA Decrypt -->
+    <div class="popup" id="popupRSADecrypt">
+        <h2>RSA Decryption - Upload File and Enter Keys</h2>
+        <form id="rsaDecryptForm">
+            <input type="file" id="fileInputDecryptRSA" name="file" required />
+            <label for="rsaPublicKeyInput">Enter RSA Public Key:</label>
+            <textarea id="rsaPublicKeyInputDecrypt" name="publicKey" placeholder="Enter public key here..." required></textarea>
+            <label for="rsaPrivateKeyInput">Enter RSA Private Key:</label>
+            <textarea id="rsaPrivateKeyInput" name="privateKey" placeholder="Enter private key here..." required></textarea>
+            <button type="button" onclick="rsaDecrypt()">Decrypt</button>
+            <button type="button" onclick="closepopup('popupRSADecrypt')">Close</button>
+        </form>
+    </div>
+    
+    <!-- Popup Modal for RSA Key -->
+    <div class="popup" id="keygeneration">
+        <h2>Generated Keys</h2>
+        <button type="button" onclick="generateRSAKeys()">Generate</button>
+        <button onclick="closepopup('keygeneration')">Close</button>
+    </div>
+
+    <script>
+        function slowScrollTo(targetId) {
+            const target = document.getElementById(targetId);
+            target.scrollIntoView({ behavior: "smooth" });
+        }
+
+        function authenticate() {
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            
+            if (username && password) {
+                document.getElementById("auth-container").style.display = "none";
+                document.getElementById("main-content").style.display = "block";
+            } else {
+                alert("Please enter a valid username and password.");
+            }
+        }
+
+        // Open popup function for Caesar Cipher
+        function openCaesarPopup(mode) {
+            const popup = document.getElementById(mode === 'encrypt' ? 'popupCaesarEncrypt' : 'popupCaesarDecrypt');
+            const overlay = document.getElementById('overlay');
+            if (popup) {
+                popup.classList.add('open-popup');
+                overlay.classList.add('show-overlay');
+            }
+        }
+
+        // Open/close functions for XOR and RSA popups
+        function openXORPopup(mode) {
+            const popup = document.getElementById(mode === 'encrypt' ? 'popupXOREncrypt' : 'popupXORDecrypt');
+            const overlay = document.getElementById('overlay');
+            if (popup) {
+                popup.classList.add('open-popup');
+                overlay.classList.add('show-overlay');
+            }
+        }
+
+        function openRSAPopup(mode) {
+            const popup = document.getElementById(mode === 'encrypt' ? 'popupRSAEncrypt' : 'popupRSADecrypt');
+            const overlay = document.getElementById('overlay');
+            if (popup) {
+                popup.classList.add('open-popup');
+                overlay.classList.add('show-overlay');
+            }
+        }
+        function openPopup(popupId) {
+            const popup = document.getElementById(popupId);
+            const overlay= document.getElementById('overlay')
+            if (popup){
+                popup.classList.add('open-popup');
+                overlay.classList.add('show-overlay');
+            }
+        }
+
+        // Close popup function
+        function closepopup(popupId) {
+            const popup = document.getElementById(popupId);
+            const overlay = document.getElementById('overlay');
+            if (popup) {
+                popup.classList.remove('open-popup');
+                overlay.classList.remove('show-overlay');
+            }
+        }
+
+        // Encrypt Functions (Triggering Backend API)
+        function caesarEncrypt() {
+            const fileInput = document.getElementById('fileInputEncryptCaesar');
+            const file = fileInput.files[0];
+            const formData = new FormData();
+            formData.append('file', file);
+            formData.append('mode', 'encrypt');
+
+            fetch('/encrypt/caesar', {
+                method: 'POST',
+                body: formData,
+            })
+            .then(response => response.blob())
+            .then(blob => {
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(blob);
+                link.download = `encrypted_${file.name}`;
+                link.click();
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+        function caesarDecrypt() {
+            const fileInput = document.getElementById('fileInputDecryptCaesar');
+            const file = fileInput.files[0];
+            const formData = new FormData();
+            formData.append('file', file);
+            formData.append('mode', 'decrypt');
+
+            fetch('/decrypt/caesar', {
+                method: 'POST',
+                body: formData,
+            })
+            .then(response => response.blob())
+            .then(blob => {
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(blob);
+                link.download = `decrypted_${file.name}`;
+                link.click();
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+        function xorEncrypt() {
+            const fileInput = document.getElementById('fileInputEncryptXOR');
+            const keyInput = document.getElementById('xorKeyInputEncrypt');
+            const file = fileInput.files[0];
+            const key = keyInput.value;
+            const formData = new FormData();
+            formData.append('file', file);
+            formData.append('mode', 'encrypt');
+            formData.append('key', key);
+
+            fetch('/encrypt/xor', {
+                method: 'POST',
+                body: formData,
+            })
+            .then(response => response.blob())
+            .then(blob => {
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(blob);
+                link.download = `encrypted_${file.name}`;
+                link.click();
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+        function xorDecrypt() {
+            const fileInput = document.getElementById('fileInputDecryptXOR');
+            const keyInput = document.getElementById('xorKeyInputDecrypt');
+            const file = fileInput.files[0];
+            const key = keyInput.value;
+            const formData = new FormData();
+            formData.append('file', file);
+            formData.append('mode', 'decrypt');
+            formData.append('key', key);
+
+            fetch('/decrypt/xor', {
+                method: 'POST',
+                body: formData,
+            })
+            .then(response => response.blob())
+            .then(blob => {
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(blob);
+                link.download = `decrypted_${file.name}`;
+                link.click();
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+        function rsaEncrypt() {
+            const fileInput = document.getElementById('fileInputEncryptRSA');
+            const publicKey = document.getElementById('rsaPublicKeyInput').value;
+            const file = fileInput.files[0];
+            const formData = new FormData();
+            formData.append('file', file);
+            formData.append('publicKey', publicKey);
+
+            fetch('/encrypt/rsa', {
+                method: 'POST',
+                body: formData,
+            })
+            .then(response => response.blob())
+            .then(blob => {
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(blob);
+                link.download = `encrypted_${file.name}`;
+                link.click();
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+        function rsaDecrypt() {
+            const fileInput = document.getElementById('fileInputDecryptRSA');
+            const publicKey = document.getElementById('rsaPublicKeyInputDecrypt').value;
+            const privateKey = document.getElementById('rsaPrivateKeyInput').value;
+            const file = fileInput.files[0];
+            const formData = new FormData();
+            formData.append('file', file);
+            formData.append('publicKey', publicKey);
+            formData.append('privateKey', privateKey);
+
+            fetch('/decrypt/rsa', {
+                method: 'POST',
+                body: formData,
+            })
+            .then(response => response.blob())
+            .then(blob => {
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(blob);
+                link.download = `decrypted_${file.name}`;
+                link.click();
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+        function generateRSAKeys() {
+            fetch('/generate/rsa-keys')
+                .then(response => response.json())
+                .then(data => {
+                    //alert("Public Key: \n" + data.publicKey + "\n\nPrivate Key: \n" + data.privateKey);
+                    const modulus = "Public Key:" + data.publicKey + "\n" + "Private Key:" + data.privateKey;
+                    navigator.clipboard.writeText(`${modulus}`);
+                })
+                .catch(error => console.error('Error generating RSA keys:', error));
+        }
+
+        //drag mouse
+        const container = document.getElementById('scroll-container');
+
+        let isDragging = false; // To track if the mouse is pressed
+        let startX, startY, scrollLeft, scrollTop;
+
+        // Mouse down event
+        container.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        container.classList.add('active');
+        startX = e.pageX - container.offsetLeft;
+        startY = e.pageY - container.offsetTop;
+        scrollLeft = container.scrollLeft;
+        scrollTop = container.scrollTop;
+        container.style.cursor = 'grabbing'; // Change cursor during dragging
+        });
+
+        // Mouse move event
+        container.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        e.preventDefault();
+        const x = e.pageX - container.offsetLeft;
+        const y = e.pageY - container.offsetTop;
+        const walkX = (x - startX) * 2; // Adjust scroll speed (multiplier)
+        const walkY = (y - startY) * 2; // Adjust scroll speed (multiplier)
+        container.scrollLeft = scrollLeft - walkX;
+        container.scrollTop = scrollTop - walkY;
+        });
+
+        // Mouse up event
+        container.addEventListener('mouseup', () => {
+        isDragging = false;
+        container.style.cursor = 'grab'; // Reset cursor after dragging
+        });
+
+        // Mouse leave event
+        container.addEventListener('mouseleave', () => {
+        isDragging = false;
+        container.style.cursor = 'grab'; // Reset cursor if mouse leaves the area
+        });
+
+    </script>
+</body>
+</html>
