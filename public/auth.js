@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 alert("Registration successful! Please log in.");
                 window.location.href = "login.html"; // Redirect to login page
             } else {
-                alert("Registration failed: " + result.message);
+                alert(result.message);
             }
         });
     }
