@@ -1,5 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            
+        }
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background:url(jpeg.jpg) no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+        .wrapper{
+            width:420px;
+            background:transparent;
+            color:#fff;
+            border-radius: 15px;
+            border:2px solid rgba(255, 255, 255, .2);
+            padding: 20px;
+            
+        }
+        .wrapper h1{
+            font-size: 50px;
+            text-align: center;
+            padding: 15px;
+
+        }
+        .wrapper .box{
+            width: 100%;
+            height: 100%;
+            margin:10px,0;
+            align-items: center;
+            align-self: center;
+            text-align: center;
+        }
+        .box label{
+            font-size: 30px;
+        }
+        .box input{
+            width: 70%;
+            height: 40px;
+            padding: 10px;
+            background: transparent;
+            border: none;
+            outline: none;
+            border: 1px solid rgb(34, 34, 32);
+            font-size: 20px;
+            color: #fff;
+            align-self: center;
+        }
+        .wrapper .btn{
+            width:50%;
+            height:50px;
+            background: #fff;
+            align-items: center;
+            align-self: center;
+            margin-left: 25%;
+            border:none;
+            outline: none;
+            border-radius: 15px;
+            margin-top: 15px;
+            box-shadow: 0 0 10px rgba(0,0,);
+            
+            cursor: pointer;
+            text-align: center;
+            font-size: 25px;
+        }
+        .wrapper .register{
+            font-size: 14.5px;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .register p a{
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .register p a:hover{
+            text-decoration: underline;
+
+        }
+
+    </style>
+     
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,15 +95,25 @@
     <link rel="stylesheet" href="styles.css"> <!-- Optional: Add CSS -->
 </head>
 <body>
-    <h2>Login</h2>
+    <div class="wrapper">
+    <h1>LOGIN</h1>
     <form id="loginForm">
-        <label for="username">Username:</label>
+        <div class="box">
+        <label for="username">Username:<br></label>
         <input type="text" id="username" name="username" required>
-        <label for="password">Password:</label>
+        </div>
+        <div class="box">
+        <label for="password">Password:<br></label>
         <input type="password" id="password" name="password" required>
-        <button type="submit">Login</button>
+        </div> 
+        <button class="btn" type="submit">Login</button>
+        <div class="register">
+            <p>Don't have an account? <a href="register.html">Register here</a></p>
+
+        </div>
     </form>
-    <p>Don't have an account? <a href="register.html">Register here</a></p>
+</div>
+   
 
     <script src="auth.js"></script>
 </body>
